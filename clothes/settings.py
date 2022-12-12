@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'drf_yasg2',
 
     'django_filters',
-    # 'main.app.MainConfig',
+    'main.apps.MainConfig',
 ]
 
 MIDDLEWARE = [
@@ -89,13 +89,23 @@ WSGI_APPLICATION = 'clothes.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_USER_PASSWORD'),
+        'HOST': env('DB_HOST'),
+        'PORT': '5432',
     }
 }
-
 
 REST_FRAMEWORK = {
     # Use Django's standard django.contrib.auth permissions,
